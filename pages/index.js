@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({ videos }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -64,4 +64,16 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  // Get video data from the given API.
+  // Note that the data is fetched in getStaticProps, so if the API changes, the website needs to be rebuild.
+  const videos = await fetch('https://cdn.jwplayer.com/v2/playlists/iG6xB42W')
+    .then(res => res.json())
+  return {
+    props: {
+      videos,
+    },
+  }
 }
