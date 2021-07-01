@@ -30,3 +30,4 @@ Je kan de git commit messages lezen om het plan van aanpak te volgen. Hier staan
 ###### Notities
 
  - Het zou mooi zijn om the thumbnail van de video dynamisch te maken, net zoals bij \<img\> tags met srcset.
+ - 

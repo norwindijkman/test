@@ -1,4 +1,4 @@
-import Video from '../Video/Video'
+import Poster from '../Poster/Poster'
 import styles from './Playlist.module.css'
 
 export default function Playlist({ playlist }) {
@@ -7,10 +7,10 @@ export default function Playlist({ playlist }) {
     throw new Error('Video playlist not found. Check if the API is still valid.')
   }
   return (
-    <div>
+    <div className={styles.playlist}>
       {playlist.playlist.map((video) => (
         <div key={video.mediaid}>
-          <Video video={video} />
+          <Poster video={video} />
         </div>
       ))}
     </div>
