@@ -3,7 +3,6 @@ import Playlist from '../components/Playlist/Playlist'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ playlist }) {
-  console.log(playlist)
   return (
     <div className={styles.container}>
       <Head>
