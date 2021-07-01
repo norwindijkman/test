@@ -1,7 +1,9 @@
 import Head from 'next/head'
+import Playlist from '../components/Playlist/Playlist'
 import styles from '../styles/Home.module.css'
 
-export default function Home({ videos }) {
+export default function Home({ playlist }) {
+  console.log(playlist)
   return (
     <div className={styles.container}>
       <Head>
@@ -12,54 +14,25 @@ export default function Home({ videos }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Watch {playlist.title}
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        {playlist.description
+          ? (<p className={styles.description}>{playlist.description}</p>)
+          : ''}
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <Playlist playlist={playlist} />
         </div>
       </main>
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://www.jwplayer.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-          </span>
+          Special thanks to JW Player
         </a>
       </footer>
     </div>
@@ -69,11 +42,11 @@ export default function Home({ videos }) {
 export async function getStaticProps() {
   // Get video data from the given API.
   // Note that the data is fetched in getStaticProps, so if the API changes, the website needs to be rebuild.
-  const videos = await fetch('https://cdn.jwplayer.com/v2/playlists/iG6xB42W')
+  const playlist = await fetch('https://cdn.jwplayer.com/v2/playlists/iG6xB42W')
     .then(res => res.json())
   return {
     props: {
-      videos,
+      playlist,
     },
   }
 }
